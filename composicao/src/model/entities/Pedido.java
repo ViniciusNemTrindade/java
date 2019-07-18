@@ -1,24 +1,22 @@
 package model.entities;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat; // Importação de classe que, permite formatar a data, de acordo com a especificação que se queira.  
+import java.util.Date;  // Importação de classe para estanciar objetos do tipo data.    
+import java.util.List; // Importação de interface para criar listas.    
+import java.util.ArrayList; // importação de classe que implementa a interface List.
 
-import model.enums.StatusPedido;
+import model.enums.StatusPedido; // importação da classe StatusPedido.
 
 
 public class Pedido {
-    
-    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    
-    private Date momento;
-    private StatusPedido status;
+    // Estanciação do objeto sdf, permitindo formatar a data de acordo com o formato desejado
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+    // Atributos da classe Pedido
+    private Date momento; 
+    private StatusPedido status;   
     private Cliente cliente;
-    private List<ItemPedido> itens = new ArrayList<>();  
-
-    public Pedido() {
-    }
+    // Estanciação da lista de itens do pedido, chamada de interface List, com a classe que a implementa: ArrayList<>()
+    private List<ItemPedido> itens = new ArrayList<>();   
 
     public Pedido(Date momento, StatusPedido status, Cliente cliente) {
         this.momento = momento;
@@ -46,28 +44,33 @@ public class Pedido {
         this.cliente = cliente;
     }
     
+    // Método para acessar itens da lista
     public List<ItemPedido> getItens(){
         return itens;
     }
     
+    // Método para adicionar um elemento da lista itens
     public void adicionarItem(ItemPedido item){
-           itens.add(item);
+           itens.add(item); // lista de itens, com o método .add() recebendo o item como parâmetro
     }
     
+    // Método para remover um elemento da lista itens
     public void removeItem(ItemPedido item){
-           itens.remove(item);
+           itens.remove(item); // lista de itens, com o método .remove(), recebendo o item como parâmetro
     }
     
+    // Método que calcula o tota do pedido
     public double total(){
         double soma = 0.0;
         for (ItemPedido item : itens) {
-            soma += item.subTotal();
+            soma += item.subTotal(); // O método subTotal() está buscando a operação de calculo do mesmo.
         }
         return soma;
     }
     
     @Override
     public String toString() {
+        // método para construção de cadeia de strings
         StringBuilder sb = new StringBuilder();
         sb.append("Momento do pedido: ");
         sb.append(sdf.format(momento)+ "\n");

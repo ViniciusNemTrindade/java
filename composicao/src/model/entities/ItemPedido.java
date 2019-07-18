@@ -1,15 +1,12 @@
 package model.entities;
 
 public class ItemPedido {
-
+    // Atributos da classe Pedido
     private Integer quantidade;
     private Double preco;
     private Produto produto;
-
-    public ItemPedido() {
-
-    }
-
+    
+    // Construtor
     public ItemPedido(Integer quantidade, Double preco, Produto produto) {
         this.quantidade = quantidade;
         this.preco = preco;
@@ -39,7 +36,7 @@ public class ItemPedido {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
+    // retorna o valor total de cada item.
     public Double subTotal() {
         return preco * quantidade;
     }
@@ -47,11 +44,6 @@ public class ItemPedido {
     @Override
     public String toString() {
         return produto.getNome()
-                + ", R$" + String.format("%.2f", preco) 
-                + ", Quantidade: " 
-                + quantidade +
-                ", Subtotal: R$ " 
-                + String.format("%.2f", subTotal()); 
+                + ", R$" + String.format("%.2f", preco) + ", Quantidade: " + quantidade + ", Subtotal: R$ " + String.format("%.2f", subTotal()); 
     }
-
 }
