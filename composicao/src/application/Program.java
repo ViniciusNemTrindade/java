@@ -59,7 +59,7 @@ public class Program {
             int quantProd = sc.nextInt();
             // Estanciação do objeto item do pedido( itemPed ), com os parâmetros quantidade do produto(quantProd), precoProd, produto
             ItemPedido itemPed = new ItemPedido(quantProd, precoProd, produto);
-            // Adiciona o item ao pedido, com a chamada do método, passando como parâmetro o objeto itemPed  
+            // Adiciona o item ao pedido, com a chamada do método adicionarItem da Clasee Pedido, passando como parâmetro o objeto itemPed  
             pedido.adicionarItem(itemPed);
             System.out.println("");
         }
