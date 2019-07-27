@@ -1,7 +1,6 @@
 // @author Vinícius Trindade
 package xadrez;
 
-import tabuleirodojogo.Posicao;
 import tabuleirodojogo.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -24,10 +23,14 @@ public class PartidaXadrez {
         }
         return mat;
     }
+    
+    private void alocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
+        tabuleiro.alocarPeca(peca, new PosicaoXadrez(coluna, linha).ParaPosicaoLogica());
+    }
 
     private void configuracaoInicial() {
-        tabuleiro.alocarPeca(new Torre(tabuleiro, Cor.WHITE), new Posicao(2, 1));
-        tabuleiro.alocarPeca(new Rei(tabuleiro, Cor.BLACK), new Posicao(0, 4));
-        tabuleiro.alocarPeca(new Rei(tabuleiro, Cor.WHITE), new Posicao(7, 4));
+        alocarNovaPeca( 'b', 6, new Torre(tabuleiro, Cor.WHITE));
+        alocarNovaPeca( 'e', 8, new Rei(tabuleiro, Cor.BLACK));
+        alocarNovaPeca( 'e', 1, new Rei(tabuleiro, Cor.WHITE));
     }
 }
