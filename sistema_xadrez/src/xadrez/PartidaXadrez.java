@@ -23,14 +23,24 @@ public class PartidaXadrez {
         }
         return mat;
     }
-    
+
     private void alocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
         tabuleiro.alocarPeca(peca, new PosicaoXadrez(coluna, linha).ParaPosicaoLogica());
     }
 
     private void configuracaoInicial() {
-        alocarNovaPeca( 'b', 6, new Torre(tabuleiro, Cor.WHITE));
-        alocarNovaPeca( 'e', 8, new Rei(tabuleiro, Cor.BLACK));
-        alocarNovaPeca( 'e', 1, new Rei(tabuleiro, Cor.WHITE));
+        alocarNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCA));
+
+        alocarNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETA));
     }
 }
