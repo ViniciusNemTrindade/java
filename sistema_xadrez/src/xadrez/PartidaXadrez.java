@@ -2,12 +2,14 @@
 package xadrez;
 
 import tabuleirodojogo.Tabuleiro;
+import tabuleirodojogo.Peca;
+import tabuleirodojogo.Posicao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
 public class PartidaXadrez {
 
-    Tabuleiro tabuleiro;
+    private Tabuleiro tabuleiro;
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
@@ -22,6 +24,27 @@ public class PartidaXadrez {
             }
         }
         return mat;
+    }
+
+    public PecaXadrez realizaMovimentoXadrez(PosicaoXadrez origemPosicao, PosicaoXadrez destinoPosicao) {
+        Posicao origem = origemPosicao.ParaPosicaoLogica();
+        Posicao destino = destinoPosicao.ParaPosicaoLogica();
+        validarPosicaoOrigem(origem);
+        Peca capturaPeca = fazerMovimento(origem, destino);
+        return (PecaXadrez) capturaPeca;
+    }
+
+    private Peca fazerMovimento(Posicao origem, Posicao destino) {
+        Peca p = tabuleiro.removePeca(origem);
+        Peca capturaPeca = tabuleiro.removePeca(destino);
+        tabuleiro.alocarPeca(p, destino);
+        return capturaPeca;
+    }
+
+    private void validarPosicaoOrigem(Posicao posicao) {
+        if (!tabuleiro.temUmaPosicao(posicao)) {
+            throw new XadrezException("Não exite peça na posição de origem");
+        }
     }
 
     private void alocarNovaPeca(char coluna, int linha, PecaXadrez peca) {

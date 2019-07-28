@@ -30,7 +30,7 @@ public class PosicaoXadrez {
     }
     
     // Faz o inverso do procedimento a cima.
-    protected static PosicaoXadrez  paraPosicaoInterface(Posicao posicao) {
+    protected static PosicaoXadrez  ParaPosicaoInterface(Posicao posicao) {
         return new PosicaoXadrez((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
     }
     
