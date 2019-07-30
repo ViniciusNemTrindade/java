@@ -25,12 +25,12 @@ public class PosicaoXadrez {
     }
     
     // Converte o comando de posicão do tabuleiro da interface interativa do jogo, para a posiçao lógica.  
-    protected Posicao ParaPosicaoLogica() {
+    protected Posicao paraPosicaoLogica() {
         return new Posicao(8 - linha, coluna - 'a' );
     }
     
     // Faz o inverso do procedimento a cima.
-    protected static PosicaoXadrez  ParaPosicaoInterface(Posicao posicao) {
+    protected static PosicaoXadrez  paraPosicaoInterface(Posicao posicao) {
         return new PosicaoXadrez((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
     }
     

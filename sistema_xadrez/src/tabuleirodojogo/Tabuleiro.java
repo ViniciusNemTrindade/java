@@ -9,7 +9,7 @@ public class Tabuleiro {
 
     public Tabuleiro(int linhas, int colunas) {
         if (linhas < 1 || colunas < 1) {
-            throw new TabuleiroException("Erro ao criar o tabuleiro: precisa existir pelo menos uma linha e uma coluna");
+            throw new TabuleiroException("Erro ao criar o tabuleiro: é preciso existir pelo menos uma linha e uma coluna");
         }
         this.linhas = linhas;
         this.colunas = colunas;

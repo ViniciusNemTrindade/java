@@ -27,8 +27,8 @@ public class PartidaXadrez {
     }
 
     public PecaXadrez realizaMovimentoXadrez(PosicaoXadrez origemPosicao, PosicaoXadrez destinoPosicao) {
-        Posicao origem = origemPosicao.ParaPosicaoLogica();
-        Posicao destino = destinoPosicao.ParaPosicaoLogica();
+        Posicao origem = origemPosicao.paraPosicaoLogica();
+        Posicao destino = destinoPosicao.paraPosicaoLogica();
         validarPosicaoOrigem(origem);
         Peca capturaPeca = fazerMovimento(origem, destino);
         return (PecaXadrez) capturaPeca;
@@ -43,12 +43,12 @@ public class PartidaXadrez {
 
     private void validarPosicaoOrigem(Posicao posicao) {
         if (!tabuleiro.temUmaPosicao(posicao)) {
-            throw new XadrezException("Não exite peça na posição de origem");
+            throw new XadrezException("Não existe peça na posição de origem");
         }
     }
 
     private void alocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
-        tabuleiro.alocarPeca(peca, new PosicaoXadrez(coluna, linha).ParaPosicaoLogica());
+        tabuleiro.alocarPeca(peca, new PosicaoXadrez(coluna, linha).paraPosicaoLogica());
     }
 
     private void configuracaoInicial() {
