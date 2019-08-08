@@ -10,10 +10,22 @@ import xadrez.pecas.Torre;
 public class PartidaXadrez {
 
     private Tabuleiro tabuleiro;
+    private int alternarJogador;
+    private Cor jogadorAtual;
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
+        alternarJogador = 1;
+        jogadorAtual = Cor.BRANCA;
         configuracaoInicial();
+    }
+
+    public int getAlternarJogador() {
+        return alternarJogador;
+    }
+
+    public Cor getJogadorAtual() {
+        return jogadorAtual;
     }
 
     public PecaXadrez[][] getPecas() {
@@ -25,12 +37,12 @@ public class PartidaXadrez {
         }
         return mat;
     }
-    
+
     public boolean[][] movimentosPossiveis(PosicaoXadrez posicaoOrigem) {
         Posicao posicao = posicaoOrigem.paraPosicaoLogica();
         validarPosicaoOrigem(posicao);
         return tabuleiro.peca(posicao).movimentosPossiveis();
-    } 
+    }
 
     public PecaXadrez realizaMovimentoXadrez(PosicaoXadrez origemPosicao, PosicaoXadrez destinoPosicao) {
         Posicao origem = origemPosicao.paraPosicaoLogica();
@@ -38,6 +50,7 @@ public class PartidaXadrez {
         validarPosicaoOrigem(origem);
         validarPosicaoDestino(origem, destino);
         Peca capturaPeca = fazerMovimento(origem, destino);
+        proximaAlternancia();
         return (PecaXadrez) capturaPeca;
     }
 
@@ -52,6 +65,9 @@ public class PartidaXadrez {
         if (!tabuleiro.temUmaPosicao(posicao)) {
             throw new XadrezException("Não existe peça na posição de origem");
         }
+        if (jogadorAtual != ((PecaXadrez)tabuleiro.peca(posicao)).getCor()) {
+            throw new XadrezException("A peça escolhida não é a sua");
+        }
         if (!tabuleiro.peca(posicao).temAlgumMovimentoPossivel()) {
             throw new XadrezException("Não existe movimentos posssíveis para a peça escolhida");
         }
@@ -61,6 +77,11 @@ public class PartidaXadrez {
         if (!tabuleiro.peca(origem).movimentoPossivel(destino)) {
             throw new XadrezException("A peça escolhida não pode se mover para a posição de destino");
         }
+    }
+    
+    private void proximaAlternancia() {
+        alternarJogador++;
+        jogadorAtual = (jogadorAtual == Cor.BRANCA) ? Cor.PRETA : Cor.BRANCA;
     }
 
     private void alocarNovaPeca(char coluna, int linha, PecaXadrez peca) {

@@ -18,20 +18,24 @@ public class Program {
         while (true) {
             try {
                 UI.clearScreen();
-                UI.printTabuleiro(partidaXadrez.getPecas());
+                UI.imprimePartida(partidaXadrez);
                 System.out.println();
                 System.out.print("Origem: ");
                 PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);
-                
+
                 boolean[][] movimentosPossiveis = partidaXadrez.movimentosPossiveis(origem);
                 UI.clearScreen();
-                UI.printTabuleiro(partidaXadrez.getPecas(), movimentosPossiveis);
+                UI.imprimeTabuleiro(partidaXadrez.getPecas(), movimentosPossiveis);
 
                 System.out.println();
                 System.out.print("Destino: ");
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
 
                 PecaXadrez capturaPeca = partidaXadrez.realizaMovimentoXadrez(origem, destino);
+            } 
+            catch (XadrezException e) {
+                System.out.println(e.getMessage());
+                sc.nextLine();
             } 
             catch (InputMismatchException e) {
                 System.out.println(e.getMessage());

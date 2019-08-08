@@ -4,6 +4,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import xadrez.Cor;
+import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
@@ -45,12 +46,19 @@ public class UI {
             throw new InputMismatchException("Erro lendo PosicaoXadrez. valores válido são de a1 a h8.");
         }
     }
+    
+    public static void imprimePartida(PartidaXadrez partidaXadrez) {
+        imprimeTabuleiro(partidaXadrez.getPecas());
+        System.out.println();
+        System.out.println("Rodada: " + partidaXadrez.getAlternarJogador());
+        System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+    }
 
-    public static void printTabuleiro(PecaXadrez[][] pecas) {
+    public static void imprimeTabuleiro(PecaXadrez[][] pecas) {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pecas.length; j++) {
-                printPeca(pecas[i][j], false);
+                imprimePeca(pecas[i][j], false);
             }
             System.out.println();
         }
@@ -58,11 +66,11 @@ public class UI {
         System.out.println("");
     }
 
-    public static void printTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
+    public static void imprimeTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pecas.length; j++) {
-                printPeca(pecas[i][j], movimentosPossiveis[i][j]);
+                imprimePeca(pecas[i][j], movimentosPossiveis[i][j]);
             }
             System.out.println();
         }
@@ -70,7 +78,7 @@ public class UI {
         System.out.println("");
     }
 
-    private static void printPeca(PecaXadrez peca, boolean planoDeFundo) {
+    private static void imprimePeca(PecaXadrez peca, boolean planoDeFundo) {
         if (planoDeFundo) {
             System.out.print(ANSI_GREEN_BACKGROUND);
         }
