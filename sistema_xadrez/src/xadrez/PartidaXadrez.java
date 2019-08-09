@@ -1,6 +1,8 @@
 // @author Vinícius Trindade
 package xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
 import tabuleirodojogo.Tabuleiro;
 import tabuleirodojogo.Peca;
 import tabuleirodojogo.Posicao;
@@ -12,6 +14,9 @@ public class PartidaXadrez {
     private Tabuleiro tabuleiro;
     private int alternarJogador;
     private Cor jogadorAtual;
+    
+    private List<Peca> pecasNoTabuleiro = new ArrayList<>(); 
+    private List<Peca> pecasCapturadas = new ArrayList<>();
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
@@ -49,16 +54,22 @@ public class PartidaXadrez {
         Posicao destino = destinoPosicao.paraPosicaoLogica();
         validarPosicaoOrigem(origem);
         validarPosicaoDestino(origem, destino);
-        Peca capturaPeca = fazerMovimento(origem, destino);
+        Peca pecaCapturada = fazerMovimento(origem, destino);
         proximaAlternancia();
-        return (PecaXadrez) capturaPeca;
+        return (PecaXadrez) pecaCapturada;
     }
 
     private Peca fazerMovimento(Posicao origem, Posicao destino) {
         Peca p = tabuleiro.removePeca(origem);
-        Peca capturaPeca = tabuleiro.removePeca(destino);
+        Peca pecaCapturada = tabuleiro.removePeca(destino);
         tabuleiro.alocarPeca(p, destino);
-        return capturaPeca;
+        
+        if (pecaCapturada!= null) {
+            pecasNoTabuleiro.remove(pecaCapturada);
+            pecasCapturadas.add(pecaCapturada);
+        }
+        
+        return pecaCapturada;
     }
 
     private void validarPosicaoOrigem(Posicao posicao) {
@@ -86,6 +97,7 @@ public class PartidaXadrez {
 
     private void alocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
         tabuleiro.alocarPeca(peca, new PosicaoXadrez(coluna, linha).paraPosicaoLogica());
+        pecasNoTabuleiro.add(peca);
     }
 
     private void configuracaoInicial() {
