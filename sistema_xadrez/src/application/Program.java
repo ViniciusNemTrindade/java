@@ -35,17 +35,15 @@ public class Program {
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
 
                 PecaXadrez capturaPeca = partidaXadrez.realizaMovimentoXadrez(origem, destino);
-                
-                if (capturaPeca != null ) {
+
+                if (capturaPeca != null) {
                     capturada.add(capturaPeca);
                 }
-                
-            } 
-            catch (XadrezException e) {
+
+            } catch (XadrezException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
-            } 
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }

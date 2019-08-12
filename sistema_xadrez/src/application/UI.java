@@ -57,6 +57,9 @@ public class UI {
         System.out.println();
         System.out.println("Rodada: " + partidaXadrez.getAlternarJogador());
         System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+        if (partidaXadrez.getXeque()) {
+            System.out.println("XEQUE!");
+        }
     }
 
     public static void imprimeTabuleiro(PecaXadrez[][] pecas) {
