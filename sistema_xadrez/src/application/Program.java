@@ -18,7 +18,7 @@ public class Program {
         PartidaXadrez partidaXadrez = new PartidaXadrez();
         List<PecaXadrez> capturada = new ArrayList<>();
 
-        while (true) {
+        while (!partidaXadrez.getXequeMate()) {
             try {
                 UI.clearScreen();
                 UI.imprimePartida(partidaXadrez, capturada);
@@ -39,7 +39,6 @@ public class Program {
                 if (capturaPeca != null) {
                     capturada.add(capturaPeca);
                 }
-
             } catch (XadrezException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
@@ -48,5 +47,7 @@ public class Program {
                 sc.nextLine();
             }
         }
+        UI.clearScreen();
+        UI.imprimePartida(partidaXadrez, capturada);
     }
 }

@@ -56,10 +56,17 @@ public class UI {
         imprimePecasCapturadas(capturada);
         System.out.println();
         System.out.println("Rodada: " + partidaXadrez.getAlternarJogador());
-        System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
-        if (partidaXadrez.getXeque()) {
-            System.out.println("XEQUE!");
+        if (!partidaXadrez.getXequeMate()) {
+
+            System.out.println("Aguardando jogador: " + partidaXadrez.getJogadorAtual());
+            if (partidaXadrez.getXeque()) {
+                System.out.println("XEQUE!");
+            }
+        } else {
+            System.out.println("XEQUE-MATE!");
+            System.out.println("Vencedor: " + partidaXadrez.getJogadorAtual());
         }
+        System.out.println();
     }
 
     public static void imprimeTabuleiro(PecaXadrez[][] pecas) {
@@ -71,7 +78,6 @@ public class UI {
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
-        System.out.println("");
     }
 
     public static void imprimeTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
@@ -83,7 +89,6 @@ public class UI {
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
-        System.out.println("");
     }
 
     private static void imprimePeca(PecaXadrez peca, boolean planoDeFundo) {
