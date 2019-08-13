@@ -8,6 +8,7 @@ import tabuleirodojogo.Tabuleiro;
 import tabuleirodojogo.Peca;
 import tabuleirodojogo.Posicao;
 import xadrez.pecas.Bispo;
+import xadrez.pecas.Cavalo;
 import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -187,11 +188,13 @@ public class PartidaXadrez {
     }
 
     private void configuracaoInicial() {
-        
+
         alocarNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('b', 1, new Cavalo(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('g', 1, new Cavalo(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCA));
@@ -203,9 +206,11 @@ public class PartidaXadrez {
         alocarNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCA));
 
         alocarNovaPeca('a', 8, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('b', 8, new Cavalo(tabuleiro, Cor.PRETA));
         alocarNovaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETA));
         alocarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETA));
         alocarNovaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('g', 8, new Cavalo(tabuleiro, Cor.PRETA));
         alocarNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETA));
         alocarNovaPeca('a', 7, new Peao(tabuleiro, Cor.PRETA));
         alocarNovaPeca('b', 7, new Peao(tabuleiro, Cor.PRETA));
