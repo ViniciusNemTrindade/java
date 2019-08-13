@@ -49,16 +49,16 @@ public class Peao extends PecaXadrez {
                 mat[p.getLinha()][p.getColuna()] = true;
             }
             p.setValores(posicao.getLinha() + 2, posicao.getColuna());
-            Posicao p2 = new Posicao(posicao.getLinha() - 1, posicao.getColuna());
+            Posicao p2 = new Posicao(posicao.getLinha() + 1, posicao.getColuna());
             if (getTabuleiro().posicaoExiste(p) && !getTabuleiro().existeUmaPeca(p) && getTabuleiro().posicaoExiste(p2) && !getTabuleiro().existeUmaPeca(p2) && getQuantMovimento() == 0) {
                 mat[p.getLinha()][p.getColuna()] = true;
             }
-            p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
+            p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
             if (getTabuleiro().posicaoExiste(p) && haPecaOponente(p)) {
                 mat[p.getLinha()][p.getColuna()] = true;
             }
 
-            p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
+            p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
             if (getTabuleiro().posicaoExiste(p) && haPecaOponente(p)) {
                 mat[p.getLinha()][p.getColuna()] = true;
             }
