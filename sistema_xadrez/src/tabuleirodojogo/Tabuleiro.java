@@ -39,7 +39,7 @@ public class Tabuleiro {
     }
 
     public void alocarPeca(Peca peca, Posicao posicao) {
-        if (temUmaPosicao(posicao)) {
+        if (existeUmaPeca(posicao)) {
             throw new TabuleiroException("Ja existe no tabuleiro, uma peca na posicao " + posicao);
         }
         pecas[posicao.getLinha()][posicao.getColuna()] = peca;
@@ -67,7 +67,7 @@ public class Tabuleiro {
         return posicaoExiste(posicao.getLinha(), posicao.getColuna());
     }
 
-    public boolean temUmaPosicao(Posicao posicao) {
+    public boolean existeUmaPeca(Posicao posicao) {
         if (!posicaoExiste(posicao)) {
             throw new TabuleiroException("Posicao não existe no tabuleiro");
         }

@@ -1,12 +1,14 @@
 // @author Vinícius Trindade
 package xadrez;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import tabuleirodojogo.Tabuleiro;
 import tabuleirodojogo.Peca;
 import tabuleirodojogo.Posicao;
+import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
@@ -73,15 +75,14 @@ public class PartidaXadrez {
         xeque = (verificaXeque(oponente(jogadorAtual))) ? true : false;
         if (verificaXequeMate(oponente(jogadorAtual))) {
             xequeMate = true;
-        }   
-        else {
-            proximaAlternancia();  
+        } else {
+            proximaAlternancia();
         }
-        return (PecaXadrez)pecaCapturada;
+        return (PecaXadrez) pecaCapturada;
     }
 
     private Peca fazerMovimento(Posicao origem, Posicao destino) {
-        PecaXadrez p = (PecaXadrez)tabuleiro.removePeca(origem);
+        PecaXadrez p = (PecaXadrez) tabuleiro.removePeca(origem);
         p.incrementarQuantMovimeno();
         Peca pecaCapturada = tabuleiro.removePeca(destino);
         tabuleiro.alocarPeca(p, destino);
@@ -95,7 +96,7 @@ public class PartidaXadrez {
     }
 
     private void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada) {
-        PecaXadrez p = (PecaXadrez)tabuleiro.removePeca(destino);
+        PecaXadrez p = (PecaXadrez) tabuleiro.removePeca(destino);
         p.decrementarQuantMovimento();
         tabuleiro.alocarPeca(p, origem);
 
@@ -107,7 +108,7 @@ public class PartidaXadrez {
     }
 
     private void validarPosicaoOrigem(Posicao posicao) {
-        if (!tabuleiro.temUmaPosicao(posicao)) {
+        if (!tabuleiro.existeUmaPeca(posicao)) {
             throw new XadrezException("Não existe peça na posição de origem");
         }
         if (jogadorAtual != ((PecaXadrez) tabuleiro.peca(posicao)).getCor()) {
@@ -137,7 +138,7 @@ public class PartidaXadrez {
         List<Peca> lista = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == cor).collect(Collectors.toList());
         for (Peca p : lista) {
             if (p instanceof Rei) {
-                return (PecaXadrez)p;
+                return (PecaXadrez) p;
             }
         }
         throw new IllegalStateException("Não existe rei " + cor + "no tabuleiro");
@@ -186,11 +187,29 @@ public class PartidaXadrez {
     }
 
     private void configuracaoInicial() {
-        alocarNovaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCA));
-        alocarNovaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCA));
+        
+        alocarNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCA));
         alocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('d', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('e', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('f', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('g', 2, new Peao(tabuleiro, Cor.BRANCA));
+        alocarNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCA));
 
-        alocarNovaPeca('b', 8, new Torre(tabuleiro, Cor.PRETA));
-        alocarNovaPeca('a', 8, new Rei(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('a', 8, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('a', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('b', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('c', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('d', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('e', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('f', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('g', 7, new Peao(tabuleiro, Cor.PRETA));
+        alocarNovaPeca('h', 7, new Peao(tabuleiro, Cor.PRETA));
     }
 }
