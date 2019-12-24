@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
 import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
@@ -29,7 +30,6 @@ public class Program {
                 boolean[][] movimentosPossiveis = partidaXadrez.movimentosPossiveis(origem);
                 UI.clearScreen();
                 UI.imprimeTabuleiro(partidaXadrez.getPecas(), movimentosPossiveis);
-
                 System.out.println();
                 System.out.print("Destino: ");
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
@@ -39,6 +39,13 @@ public class Program {
                 if (capturaPeca != null) {
                     capturada.add(capturaPeca);
                 }
+                
+                if (partidaXadrez.getPromocao() != null) {
+                    System.out.println("Peca desejada para promocao (B/N/R/Q): ");
+                    String tipo = sc.nextLine();
+                    partidaXadrez.alocarPecaPromovida(tipo); 
+                }
+                    
             } catch (XadrezException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
